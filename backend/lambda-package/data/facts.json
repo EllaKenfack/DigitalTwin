@@ -1,0 +1,26 @@
+{
+    "full_name": "Ella Kenfack",
+    "name": "Ella",
+    "current_role": "DevOps Architect",
+    "location": "Canada",
+    "email": "ella@gmail.com",
+    "linkedin": "linkedin.com/in/ella-kenfack",
+    "specialties": [
+      "DevOps",
+      "Software Development",
+      "AI"
+    ],
+    "years_experience": 9,
+    "education": [
+      {
+        "degree": "Master in Business intelligence",
+        "institution": "HEC Montreal",
+        "year": "2021"
+      }, 
+     {
+        "degree": "Bachelor in Mechanical Engineering",
+        "institution": "Polytechnique Montreal",
+        "year": "2017"
+      }
+    ]
+  }
