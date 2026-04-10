@@ -408,10 +408,11 @@ class PdfReader(PdfDocCommon):
                     )  # pragma: no cover
                 obj = NullObject()  # pragma: no cover
 
-            # Only cache if this object is still registered in xref_objStm.
+            # Only cache if this stream is the authoritative source for the object.
             # Incremental updates may override objects originally in the stream;
             # caching those stale versions would shadow the newer xref entry.
-            if obj_num in self.xref_objStm:
+            authoritative_stm, _idx = self.xref_objStm.get(obj_num, (None, None))
+            if authoritative_stm == stmnum:
                 self.cache_indirect_object(0, obj_num, obj)  # type: ignore[arg-type]
 
             if obj_num == indirect_reference.idnum:
@@ -887,6 +888,15 @@ class PdfReader(PdfDocCommon):
                 cnt += 1
                 num += 1
             read_non_whitespace(stream)
+            stream.seek(-1, 1)
+            # Skip any PDF comments between xref entries and the trailer
+            # keyword. Some PDF producers (e.g. Vectorizer.AI) insert
+            # comments here which are legal per the PDF spec (§7.2.3).
+            while stream.read(1) == b"%":
+                stream.seek(-1, 1)
+                skip_over_comment(stream)
+                read_non_whitespace(stream)
+                stream.seek(-1, 1)
             stream.seek(-1, 1)
             trailer_tag = stream.read(7)
             if trailer_tag != b"trailer":
