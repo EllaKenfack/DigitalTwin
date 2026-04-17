@@ -2,6 +2,9 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyc
+.venv/
+uv.lock
 
 # C extensions
 *.so
@@ -31,6 +34,20 @@ MANIFEST
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
+
+# Lambda packages
+lambda-deployment.zip
+lambda-package/
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate.d/
+*.tfvars
+!terraform.tfvars
+!prod.tfvars
 
 # Installer logs
 pip-log.txt
@@ -178,3 +195,9 @@ cython_debug/
 finale/.bedrock_agentcore.yaml
 finale/Dockerfile
 finale/.dockerignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
