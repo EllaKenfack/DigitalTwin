@@ -147,6 +147,8 @@ celerybeat.pid
 # Environments
 .env
 .venv
+.env.*
+!.env.example
 env/
 venv/
 ENV/
@@ -201,3 +203,11 @@ finale/.dockerignore
 .idea/
 *.swp
 .DS_Store
+
+
+# AWS
+.aws/
+
+# Memory storage (contains conversation history)
+memory/
+
